@@ -26,77 +26,33 @@
                 @endforeach
             </ul>
             <div class="tab-content" id="menuTabs">
+                @foreach ($loaiSP as $key => $value)
                 <div class="menu_tab tab-pane fade active">
                     <span
-                        class="menu_tab-trigger"
+                        class="menu_tab-trigger {{$key == 0 ? 'show active' : ''}}"
+                        id="beverages_{{$key}}"
                         data-bs-toggle="collapse"
                         data-bs-target="#starters"
                         aria-expanded="true"
                         role="button"
                     >
-                        <span class="label h4">Starters</span>
-                        <i class="icon"></i>
+
                     </span>
                     <ul class="menu_tab-list collapse show" id="starters">
-                        <li class="menu_tab-list_item">
-                            <div class="main h5">
-                                <a class="main_name" href="#">Pate with Mushrooms</a>
-                                <span class="main_price">$15</span>
-                            </div>
-                            <p class="description text--md">Mushrooms, Toast, Garlic Sauce</p>
-                        </li>
-                        <li class="menu_tab-list_item">
-                            <div class="main h5">
-                                <a class="main_name" href="#">Cheese Slices</a>
-                                <span class="main_price">$25</span>
-                            </div>
-                            <p class="description text--md">Parmesan, Mascarpone, Mozzarella</p>
-                        </li>
-                        <li class="menu_tab-list_item" data-type="spicy">
-                            <div class="main h5">
-                                <a class="main_name" href="#"><i class="icon-spicy"></i> Chicken Wings</a>
-                                <span class="main_price">$30</span>
-                            </div>
-                            <p class="description text--md">Chicken Wings, Sesame Seeds, Spicy Sauce</p>
-                        </li>
-                        <li class="menu_tab-list_item">
-                            <div class="main h5">
-                                <a class="main_name" href="#">Shrimps in Butter</a>
-                                <span class="main_price">$18</span>
-                            </div>
-                            <p class="description text--md">Shrimps, Sauce, Herbs</p>
-                        </li>
-                        <li class="menu_tab-list_item">
-                            <div class="main h5">
-                                <a class="main_name" href="#">Сold Сuts</a>
-                                <span class="main_price">$32</span>
-                            </div>
-                            <p class="description text--md">Balyk, Prosciutto, Boiled Pork</p>
-                        </li>
+                        @foreach ($sanPham as $key_sp => $value_sp)
+                        @if($value_sp->id_cha == $value->id)
                         <li class="menu_tab-list_item" data-type="vegan">
                             <div class="main h5">
-                                <a class="main_name" href="#"><i class="icon-vegan"></i> Pita Bread with Vegetables</a>
-                                <span class="main_price">$28</span>
+                                <a class="main_name" href="#"><i class="icon-vegan"></i>{{$value_sp->ten_san_pham}}</a>
+                                <span class="main_price">{{ number_format($value_sp->gia_ban, 0, ',', '.') }} đ</span>
                             </div>
-                            <p class="description text--md">Lavash, Greens, Tomato, Cabbage, Cucumber, Sauce</p>
+                            <p class="description text--md">{{$value_sp->mo_ta_chi_tiet}}</p>
                         </li>
-                        <li class="menu_tab-list_item" data-type="vegan">
-                            <div class="main h5">
-                                <a class="main_name" href="#"><i class="icon-vegan"></i> Assorted Vegetables</a>
-                                <span class="main_price">$10</span>
-                            </div>
-                            <p class="description text--md">Сucumbers, Tomatoes, Peppers, Olives</p>
-                        </li>
-                        <li class="menu_tab-list_item">
-                            <div class="main h5">
-                                <a class="main_name" href="#">Toast with Salmon</a>
-                                <span class="main_price">$15</span>
-                            </div>
-                            <p class="description text--md">Bread, Flax, Herbs, Sauce, Salmon</p>
-                        </li>
+                        @endif
+                        @endforeach
                     </ul>
                 </div>
-
+            @endforeach
             </div>
         </div>
     </div>
